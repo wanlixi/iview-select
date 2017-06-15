@@ -35,6 +35,7 @@ iview UI库里面select组件的坑,
   <script type="text/babel">
     // 这里引入iview 里面的select组件
     import { iSelect , iOption } from "iview"
+    import { getProjectList } from 'service/api'
     export default {
     components: { iSelect , iOption },
       data () {

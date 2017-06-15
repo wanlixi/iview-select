@@ -8,7 +8,7 @@ iview UI库里面select组件的坑,
 
 ### api.js
 ``` 
-    const axios = require('axios');
+    const axios = require('axios');
     export const getProjectList = (userId) => {
       let data;
       axios.post(url,{userId: userId},config)
@@ -64,3 +64,4 @@ iview UI库里面select组件的坑,
     }
   </script> 
   ```
+  \<html\>

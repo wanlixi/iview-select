@@ -45,11 +45,19 @@ iview UI库里面select组件的坑,
       mounted () {
         // 因为projectList对应的数据通常都是后台返回给我们的数据，所以我们在初始化的时候是不知道，每一项的projectId是多少的，因此我们可以判断取第一个项目
         this.projectList.length > 0 && this.selectedProjectId = this.projectList[0].projectId;
+        console.log(456)
       },
       methods: {
         changeProject () {
-          // 注意，坑出现
-          ### console.log(123)
+          // 注意，坑1!!! 下面打印的123会在页面初始化的时候打印一次,而且会打印在456之后，我们通常误认为changeProject绑定的on-change事件，应该是只有在select的选中值发生改变时，才能触发此事件
+          console.log(123);
+          this.selectedProjectId = this.$refs.project.model;
+          // 注意，坑2 ，虽然我们在控制台里面可以找到我们当前选中值projectName，但是却不能直接赋值给this.selectedProjectName，也就是说this.$refs.project.selectedSingle取不到值，如果用户一进来没有切换过项目，直接提交数据传过的数据就是这样的{ projectId: （正常有值）, projectName: undefind,所以我们不可以这样给selectedProjectName赋值
+          this.selectedProjectName = this.$refs.project.selectedSingle;
+          // 而是
+          this.selectedProjectName = this.projectList.filter( item => {
+            return item.value == this.selectedProjectId
+          })
         }
       }
     }

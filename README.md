@@ -2,7 +2,7 @@
 iview UI库里面select组件的坑, 
 
 ##### on-change : 选择发生改变时触发的事件是
-##### v-ref : 对应的值会挂载在全局vue（this里面可以访问到）上去，例如下面可以通过this.$refs.project对象里面找到当前选中项的一些数据
+##### v-ref : 对应的值(我们设置的是project)会挂载在全局vue（this里面可以访问到）上去，例如下面可以通过this.$refs.project对象里面找到当前选中项的一些数据
 
 
 ### api.js

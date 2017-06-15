@@ -38,10 +38,12 @@ iview UI库里面select组件的坑,
     export default {
     components: { iSelect , iOption },
       data () {
-        projectList: getProjectList,
-        selectedProjectId: null,
-        selectedProjectName: '',
-        selectedProjectLogo: '',
+        return {
+          projectList: getProjectList,
+          selectedProjectId: null,
+          selectedProjectName: '',
+          selectedProjectLogo: '',
+        }
       },
       mounted () {
         // 因为projectList对应的数据通常都是后台返回给我们的数据，所以我们在初始化的时候是不知道，每一项的projectId是多少的，因此我们可以判断取第一个项目

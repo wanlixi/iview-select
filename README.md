@@ -6,12 +6,13 @@ iview UI库里面select组件的坑,
 
 
 ### api.js
-``` const axios = require('axios');
+``` 
+    const axios = require('axios');
     export const getProjectList = (userId) => {
       let data;
       axios.post(url,{userId: userId},config)
             .then(function(response){
-            //因为iview里面的select模版需要value和label两个字段来渲染，因此我们可以
+            // 因为iview里面的select模版需要value和label两个字段来渲染，因此我们可以
               data = response.map( item => {
                 item.value = item.projectId;
                 item.label = item.projectName;
@@ -24,7 +25,8 @@ iview UI库里面select组件的坑,
     }
 ```
 ### index.vue
-``` <template>
+``` 
+  <template>
     <i-select v-ref:project :model.sync="selectedProjectId" @on-change="changeProject">
       <i-option v-for="item in projectList" :value="item.value">{{item.label}}</i-option>
     </i-select>
@@ -41,12 +43,14 @@ iview UI库里面select组件的坑,
         selectedProjectLogo: '',
       },
       mounted () {
-        //因为projectList对应的数据通常都是后台返回给我们的数据，所以我们在初始化的时候是不知道，每一项的projectId是多少的，因此我们可以判断取第一个项目
+        // 因为projectList对应的数据通常都是后台返回给我们的数据，所以我们在初始化的时候是不知道，每一项的projectId是多少的，因此我们可以判断取第一个项目
+        this.projectList.length > 0 && this.selectedProjectId = this.projectList[0].projectId;
       },
       methods: {
         changeProject () {
-          
-        }
+          // 注意，坑出现
+          ### console.log(123)
+        }
       }
     }
   </script> ```
